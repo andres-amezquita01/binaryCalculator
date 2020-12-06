@@ -30,30 +30,75 @@ public class ManagerConfiguration {
 		return configuration.fromChar(character);
 	}
 	
-	public String fromShort(Short number) {
+	public String fromShort(short number) {
 		return configuration.fromShort(number);
 	}
+	public String fromShortComplementOne(short number) {
+		return configuration.fromShortToComplementOne(number);
+	}
+	public String fromShortMagnitudeSign(short number) {
+		return configuration.fromShortToMagnitudeSign(number);
+	}
+	
+	
 	public String fromInt(int number) {
 		return configuration.fromInt(number);
 	}
+	public String fromIntComplementOne(int number) {
+		return configuration.fromIntToComplementOne(number);
+	}
+	public String fromIntMagnitudeSign(int number) {
+		return configuration.fromIntToMagnitudeSign(number);
+	}
+	
+	
 	public String fromByte(byte number) {
 		return configuration.fromByte(number);
 	}
+	public String fromByteComplementOne(byte number) {
+		return configuration.fromByteToComplement1(number);
+	}
+	public String fromByteMagnitudeSign(byte number) {
+		return configuration.fromByteToMagnitudeSign(number);
+	}
+	
+	
 	public String fromLong(Long number) {
 		return configuration.fromLong(number);
 	}
+	public String fromLongComplementOne(long number) {
+		return configuration.fromLongToComplementOne(number);
+	}
+	public String fromLongMagnitudeSign(long number) {
+		return configuration.fromLongToMagnitudeSign(number);
+	}
+	
+	
+	
 	public String fromFloat(float number) {
 		return configuration.fromFloat(number);
 	}
-	
-	public String fromDouble(double number) {
-		return configuration.fromDouble(number);
+	public String fromFloatComplementOne(float number) {
+		return configuration.fromFloatToComplementOne(number);
 	}
-	
+	public String fromFloatMagnitudeSign(float number) {
+		return configuration.fromFloatToMagnitudeSign(number);
+	}
 	public String fromFloatWithFormat(float number) {
 		return configuration.fromFloatWithFormatIEEE754(number);
 	}
 	
+	
+	
+	public String fromDouble(double number) {
+		return configuration.fromDouble(number);
+	}
+	public String fromDoubleComplementOne(double number) {
+		return configuration.fromDoubleToComplementOne(number);
+	}
+	public String fromDoubleMagnitudeSign(double number) {
+		return configuration.fromDoubleToMagnitudeSign(number);
+	}
 	public String fromDoubleWithFormat(double number) {
 		return configuration.fromDoubletWithFormatIEEE754(number);
 	}

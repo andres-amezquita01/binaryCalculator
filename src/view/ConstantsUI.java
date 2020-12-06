@@ -9,7 +9,11 @@ public class ConstantsUI {
 	public  static  final String T_MAIN_WINDOW = "Tipos de datos";
 	public  static  final String T_TEXT_DATA = "Dato";
 	public  static  final String T_TEXT_PLACE_HOLDER = "Ingrese el dato";
-	public  static  final String T_TEXT_CONFIGURATION_BITS = "Configuracion en bits";
+	public  static  final String T_TEXT_CONFIGURATION_BITS = "Configuracion en bits Complemento a 2";
+	public  static  final String T_TEXT_CONFIGURATION_BITS_COMPLEMENT_TO_ONE = "Configuracion en bits Complemento a 1";
+	public  static  final String T_TEXT_CONFIGURATION_BITS_EXCESS = "Configuracion en bits Exceso 2n-1";
+	public  static  final String T_TEXT_CONFIGURATION_BITS_MAGNITUDE_SIGN = "Configuracion en bits signo-magnitud";
+
 	public  static  final String T_TEXT_CONFIGURATION_BITS_WHIT_FORMAT = "Configuracion en bits con formato IEEE754";
 	public  static  final String T_BUTTON_SEND = "Enviar";
 	public  static  final String T_BUTTON_TO_BINARY = "Convertir a binario";

@@ -27,9 +27,13 @@ public class JPcontainerHeader extends JPanel{
 		private MyComboBox mcbReportSelect;
 		private JTextField textField; 
 		private JTextField textFieldTwo; 
+		private JTextField textFieldComplement1; 
+		private JTextField textFieldmagnitudesign; 
+		private JTextField textFieldExces; 
+
 		private RoundedJButton jbutton;
 		public JPcontainerHeader(ActionListener actionListener) {
-			setLayout(new GridLayout(4,1));
+			setLayout(new GridLayout(7,1));
 			setBackground(Color.white);
 			initComponents(actionListener);
 
@@ -65,6 +69,25 @@ public class JPcontainerHeader extends JPanel{
 			textFieldTwo.setBorder(BorderFactory.createTitledBorder(ConstantsUI.T_TEXT_CONFIGURATION_BITS));
 			textFieldTwo.setEditable(false);
 			
+			
+			textFieldComplement1 = new JTextField();
+			textFieldComplement1.setSize(100, 20); 
+			textFieldComplement1.setToolTipText(ConstantsUI.T_TEXT_CONFIGURATION_BITS_COMPLEMENT_TO_ONE);
+			textFieldComplement1.setBorder(BorderFactory.createTitledBorder(ConstantsUI.T_TEXT_CONFIGURATION_BITS_COMPLEMENT_TO_ONE));
+			textFieldComplement1.setEditable(false);
+			
+			textFieldmagnitudesign = new JTextField();
+			textFieldmagnitudesign.setSize(100, 20); 
+			textFieldmagnitudesign.setToolTipText(ConstantsUI.T_TEXT_CONFIGURATION_BITS_MAGNITUDE_SIGN);
+			textFieldmagnitudesign.setBorder(BorderFactory.createTitledBorder(ConstantsUI.T_TEXT_CONFIGURATION_BITS_MAGNITUDE_SIGN));
+			textFieldmagnitudesign.setEditable(false);
+			
+			textFieldExces = new JTextField();
+			textFieldExces.setSize(100, 20); 
+			textFieldExces.setToolTipText(ConstantsUI.T_TEXT_CONFIGURATION_BITS_EXCESS);
+			textFieldExces.setBorder(BorderFactory.createTitledBorder(ConstantsUI.T_TEXT_CONFIGURATION_BITS_EXCESS));
+			textFieldExces.setEditable(false);
+			
 			jbutton = new RoundedJButton(15, 15, ConstantsUI.T_BUTTON_SEND, ConstantsUI.COLOR_DARCK_BLUE,
 				    Color.WHITE,ConstantsUI.FONT_MAIN_WINDOW_LABELS, Commands.C_SEND_TO_BINARY.toString(), actionListener ){
 			            private static final long serialVersionUID = 1L;
@@ -80,7 +103,10 @@ public class JPcontainerHeader extends JPanel{
 			
 			add(textField);
 			add(mcbReportSelect);
+			add(textFieldComplement1);
 			add(textFieldTwo);
+			add(textFieldmagnitudesign);
+			add(textFieldExces);
 			add(jbutton);
 		}
 		private void addItemsToComboBox() {
@@ -101,7 +127,15 @@ public class JPcontainerHeader extends JPanel{
 			textFieldTwo.setText("");
 			textFieldTwo.setText(text);
 		}
-
+		public void setValueTextComplementToOne(String text) {
+			textFieldComplement1.setText("");
+			textFieldComplement1.setText(text);
+		}
+		
+		public void setValueTextMagnitudeSign(String text) {
+			textFieldmagnitudesign.setText("");
+			textFieldmagnitudesign.setText(text);
+		}
 		public String getValueUser() {
 			return textField.getText();
 		}

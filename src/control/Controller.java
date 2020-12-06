@@ -64,22 +64,34 @@ public class Controller implements ActionListener{
 			window.setValueText(managerConfiguration.fromChar((window.getValueUser()).charAt(0)));
 			break;
 		case "Byte":
-			window.setValueText(""+managerConfiguration.fromByte(Byte.parseByte(window.getValueUser())));
+			window.setValueText(managerConfiguration.fromByte(Byte.parseByte(window.getValueUser())));
+			window.setValueTextComplementToOne(managerConfiguration.fromByteComplementOne(Byte.parseByte(window.getValueUser()) ));
+			window.setValueTextMagnitudeSign(managerConfiguration.fromByteMagnitudeSign(Byte.parseByte(window.getValueUser()) ));
 			break;
 		case "Short":
 			window.setValueText(managerConfiguration.fromShort(Short.parseShort(window.getValueUser())));
+			window.setValueTextComplementToOne(managerConfiguration.fromShortComplementOne(Short.parseShort(window.getValueUser()) ));
+			window.setValueTextMagnitudeSign(managerConfiguration.fromShortMagnitudeSign(Short.parseShort(window.getValueUser()) ));
 			break;
 		case "Int":
-			window.setValueText(""+managerConfiguration.fromInt(Integer.parseInt(window.getValueUser())));
+			window.setValueText(managerConfiguration.fromInt(Integer.parseInt(window.getValueUser())));
+			window.setValueTextComplementToOne(managerConfiguration.fromIntComplementOne(Integer.parseInt(window.getValueUser()) ));
+			window.setValueTextMagnitudeSign(managerConfiguration.fromIntMagnitudeSign(Integer.parseInt(window.getValueUser()) ));
 			break;
 		case "Long":
 			window.setValueText(managerConfiguration.fromLong(Long.parseLong(window.getValueUser())));
+			window.setValueTextComplementToOne(managerConfiguration.fromLongComplementOne(Long.parseLong(window.getValueUser()) ));
+			window.setValueTextMagnitudeSign(managerConfiguration.fromLongMagnitudeSign(Long.parseLong(window.getValueUser()) ));
 			break;
 		case "Float":
 			window.setValueText(managerConfiguration.fromFloat(Float.parseFloat(window.getValueUser())));
+			window.setValueTextComplementToOne(managerConfiguration.fromFloatComplementOne(Float.parseFloat(window.getValueUser()) ));
+			window.setValueTextMagnitudeSign(managerConfiguration.fromFloatMagnitudeSign(Float.parseFloat(window.getValueUser()) ));
 			break;
 		case "Double":
 			window.setValueText(managerConfiguration.fromDouble(Double.parseDouble(window.getValueUser())));
+			window.setValueTextComplementToOne(managerConfiguration.fromDoubleComplementOne(Double.parseDouble(window.getValueUser()) ));
+			window.setValueTextMagnitudeSign(managerConfiguration.fromDoubleMagnitudeSign(Double.parseDouble(window.getValueUser()) ));
 			break;
 		case "String":
 			window.setValueText(""+managerConfiguration.fromStringToBinary(window.getValueUser()));

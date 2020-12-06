@@ -49,6 +49,12 @@ public class JFMainWindow extends JFrame{
 	public void setValueText(String text) {
 		pMainPanel.setValueText(text);
 	}
+	public void setValueTextComplementToOne(String text) {
+		pMainPanel.setValueTextComplementToOne(text);
+	}
+	public void setValueTextMagnitudeSign(String text) {
+		pMainPanel.setValueTextMagnitudeSign(text);
+	}
 	public String getValueUser() {
 		return pMainPanel.getValueUser();
 	}

@@ -60,13 +60,36 @@ public class Configuration {
 	 * @param data dato short a convertir.
 	 * @return configuracion en bits de data.
 	 */
-	public String fromShort(Short number) {
+	public String fromShort(short number) {
 		String lengthOfBits = "" + Integer.toBinaryString(number);
 		String test = fillZeros(number, lengthOfBits, 32);
 		test = test + lengthOfBits;
 		String bin = test.substring(16);
 		return bin;
 	}
+	
+	/**
+	 * Convierte un dato de tipo short a su representacion en binario complemento a 1.
+	 * @param data dato short a convertir.
+	 * @return configuracion en bits de data.
+	 */
+	public String fromShortToComplementOne(short number) {
+		String lengthOfBits = ToBinary(Math.abs(number));
+		String test = partSignificative( lengthOfBits, 16);
+		return changeToComplement1(test);
+	}
+	
+	/**
+	 * convierte un dato de tipo int a su representacion en signo magnitud.
+	 * @param number dato a convertir.
+	 * @return representacion binaria signo-magnitud del numero.
+	 */
+	public String fromShortToMagnitudeSign(short number) {
+		String lengthOfBits = ToBinary(Math.abs(number));
+		String test = partSignificative( lengthOfBits, 16);
+		return magnitudeSign(test, number);
+	}
+	
 	/**
 	 * Convierte un dato de tipo entero a su representacion en binario.
 	 * @param data dato entero a convertir.
@@ -77,6 +100,26 @@ public class Configuration {
 		String test = fillZeros(number, lengthOfBits, 32);
 		test = test + lengthOfBits;
 		return test;
+	}
+	/**
+	 * Convierte un dato de tipo int a su representacion en binario complemento a 1.
+	 * @param data dato long a convertir.
+	 * @return configuracion en bits de data.
+	 */
+	public String fromIntToComplementOne(int number) {
+		String lengthOfBits = ToBinary(Math.abs(number));
+		String test = partSignificative( lengthOfBits, 32);
+		return changeToComplement1(test);
+	}
+	/**
+	 * convierte un dato de tipo int a su representacion en signo magnitud.
+	 * @param number dato a convertir.
+	 * @return representacion binaria signo-magnitud del numero.
+	 */
+	public String fromIntToMagnitudeSign(int number) {
+		String lengthOfBits = ToBinary(Math.abs(number));
+		String test = partSignificative( lengthOfBits, 32);
+		return magnitudeSign(test, number);
 	}
 
 	/**
@@ -91,6 +134,22 @@ public class Configuration {
 		String bin = test.substring(24);
 		return bin;
 	}
+	/**
+	 * convierte un dato de tipo byte a su representacion en signo magnitud.
+	 * @param number dato a convertir.
+	 * @return representacion binaria signo-magnitud del numero.
+	 */
+	public String fromByteToMagnitudeSign(byte number) {
+		String lengthOfBits = ToBinary(Math.abs(number));
+		String test = partSignificative( lengthOfBits, 8);
+		return magnitudeSign(test, number);
+	}
+	
+	public String fromByteToComplement1(byte number) {
+		String lengthOfBits = ToBinary(Math.abs(number));
+		String test = partSignificative( lengthOfBits, 8);
+		return changeToComplement1(test);
+	}
 	
 	/**
 	 * Convierte un dato de tipo long a su representacion en binario.
@@ -102,6 +161,26 @@ public class Configuration {
 		String test = fillZeros(number, lengthOfBits, 64);
 		test = test + lengthOfBits;
 		return test;
+	}
+	/**
+	 * convierte un dato de tipo long a su representacion en signo magnitud.
+	 * @param number dato a convertir.
+	 * @return representacion binaria signo-magnitud del numero.
+	 */
+	public String fromLongToMagnitudeSign(long number) {
+		String lengthOfBits = ToBinary(Math.abs(number));
+		String test = partSignificative( lengthOfBits, 64);
+		return magnitudeSign(test, number);
+	}
+	/**
+	 * Convierte un dato de tipo long a su representacion en binario complemento a 1.
+	 * @param data dato long a convertir.
+	 * @return configuracion en bits de data.
+	 */
+	public String fromLongToComplementOne(long number) {
+		String lengthOfBits = ToBinary(Math.abs(number));
+		String test = partSignificative( lengthOfBits, 64);
+		return changeToComplement1(test);
 	}
 
 	/**
@@ -122,6 +201,32 @@ public class Configuration {
 		formatIEEE754 = formatIEEE754( number, mantise, 23, exponentBits);
 		return formatIEEE754 ;
 	}
+	public String fromFloatToComplementOne(float number) {
+		int partIntegerTwo =  getPartInt(number);
+		float decimalPart = getPartDecimal(number);
+		String binaryPartInteger = ToBinary(partIntegerTwo);
+		String binaryPartDecimal = decimalToBinary(decimalPart,23- binaryPartInteger.length());
+
+		binaryPartInteger = changeToComplement1(binaryPartInteger);
+		binaryPartDecimal = changeToComplement1(binaryPartDecimal);
+		String binaryNumber = binaryPartInteger + "  .  " + binaryPartDecimal;
+		return binaryNumber;
+	}
+	/**
+	 * convierte un dato de tipo float a su representacion en signo magnitud.
+	 * @param number dato a convertir.
+	 * @return representacion binaria signo-magnitud del numero.
+	 */
+	public String fromFloatToMagnitudeSign(float number) {
+		int partIntegerTwo =  getPartInt(number);
+		float decimalPart = getPartDecimal(number);
+		String binaryPartInteger = ToBinary(partIntegerTwo);
+		String binaryPartDecimal = decimalToBinary(decimalPart,23- binaryPartInteger.length());
+		binaryPartInteger = magnitudeSign(binaryPartInteger, (int) number);
+		String binaryNumber = binaryPartInteger + "  .  " + binaryPartDecimal;
+		return binaryNumber;
+	}
+	
 	public String fromFloat(float number) {
 		int partIntegerTwo =  getPartInt(number);
 		float decimalPart = getPartDecimal(number);
@@ -130,6 +235,7 @@ public class Configuration {
 		String binaryNumber = binaryPartInteger + "  .  " + binaryPartDecimal;
 		return binaryNumber ;
 	}
+
 	/**
 	 * Convierte un dato de tipo double a su representacion en binario.
 	 * @param data dato double a convertir.
@@ -140,6 +246,37 @@ public class Configuration {
 		double decimalPart = getPartDecimalDouble(number);
 		String binaryPartInteger = intToBinary(partIntegerTwo);
 		String binaryPartDecimal = decimalToBinary(decimalPart,52- binaryPartInteger.length());
+		String binaryNumber = binaryPartInteger + "  .  " + binaryPartDecimal;
+		return binaryNumber;
+	}
+	/**
+	 * convierte un dato de tipo double a su representacion en signo magnitud.
+	 * @param number dato a convertir.
+	 * @return representacion binaria signo-magnitud del numero.
+	 */
+	public String fromDoubleToMagnitudeSign(double number) {
+		int partIntegerTwo =  getPartInt(number);
+		double decimalPart = getPartDecimalDouble(number);
+		String binaryPartInteger = ToBinary(partIntegerTwo);
+		String binaryPartDecimal = decimalToBinary(decimalPart,52- binaryPartInteger.length());
+		binaryPartInteger = magnitudeSign(binaryPartInteger, (int) number);
+		String binaryNumber = binaryPartInteger + "  .  " + binaryPartDecimal;
+		return binaryNumber;
+	}
+	
+	/**
+	 * Convierte un dato de tipo double a su representacion en binario.
+	 * @param data dato double a convertir.
+	 * @return configuracion en bits de data.
+	 */
+	public String fromDoubleToComplementOne(double number) {
+		int partIntegerTwo =  getPartInt(number);
+		double decimalPart = getPartDecimalDouble(number);
+		String binaryPartInteger = ToBinary(partIntegerTwo);
+		String binaryPartDecimal = decimalToBinary(decimalPart,52- binaryPartInteger.length());
+
+		binaryPartInteger = changeToComplement1(binaryPartInteger);
+		binaryPartDecimal = changeToComplement1(binaryPartDecimal);
 		String binaryNumber = binaryPartInteger + "  .  " + binaryPartDecimal;
 		return binaryNumber;
 	}
@@ -405,4 +542,134 @@ public class Configuration {
 	}
 	
 	//__________________________________
+	
+	//_____________________________________COMPLEMENT TO 1_______________________
+	/**
+	 * Transforma un numero binario original a su representacion en complemento a 1.
+	 * @param number numero a convertir.
+	 * @return representacion binaria en complemento a 1.
+	 */
+	public String changeToComplement1(String number) {
+		String aux = number;
+		char[] arrayAux = aux.toCharArray();
+		
+		for (int i = 0; i < arrayAux.length; i++) {
+			if (aux.charAt(i) == '0') {
+				arrayAux[i] = '1';
+			}else {
+				arrayAux[i] = '0';
+			}
+		}
+		String complement1 = "";
+		for (int i = 0; i < arrayAux.length; i++) {
+			complement1 = complement1 + arrayAux[i];
+		}
+		return complement1;
+	}
+	/**
+	 * obtiene la parte significativa de un numero.
+	 * @param mantise numero en binario.
+	 * @param quantityBits cantidad maxima de bits que puede contener el tipo de dato.
+	 * @return parte significativa en bits del numero.
+	 */
+	public String partSignificative( String mantise, int quantityBits) {
+		String bits = "";
+		
+		if(mantise.length() < quantityBits) {
+			for (int i = 0; i < (quantityBits- (mantise.length())  ) ; i++) {
+				bits = bits + "0";
+			}
+		}
+		return     bits + mantise;
+	}
+	/**
+	 * Convierte un numero de tipo entero a binario.
+	 * @param number numero a convertir.
+	 * @return numero binario del numero.
+	 */
+	public String ToBinary(int number) {
+
+		String rel = "";
+		while(number > 0) {
+			int numberOne =  (number % 2);
+			rel = numberOne + rel;
+			number /= 2;
+		}
+		return rel;
+	}
+	/**
+	 * Convierte un numero de tipo long a binario.
+	 * @param number numero a convertir.
+	 * @return numero binario del numero.
+	 */
+	public String ToBinary(long number) {
+
+		String rel = "";
+		while(number > 0) {
+			long numberOne =  (number % 2);
+			rel = numberOne + rel;
+			number /= 2;
+		}
+		return rel;
+	}
+	
+	/**
+	 * convierte un binario a su representacion en signo magnitud.
+	 * @param mantise
+	 * @param number
+	 * @return
+	 */
+	public String magnitudeSign(String mantise, int number){
+		String significative =  mantise.substring(1, mantise.length());
+		String sign = "";
+		if(number < 0 ) {
+			sign = "1";
+		}else {
+			sign = "0";
+
+		}
+		return sign + significative;
+	}
+	/**
+	 * convierte un numero long binario a su representacion en signo magnitud .
+	 * @param mantise
+	 * @param number
+	 * @return
+	 */
+	public String magnitudeSign(String mantise, long number){
+		String significative =  mantise.substring(1, mantise.length());
+		String sign = "";
+		if(number < 0 ) {
+			sign = "1";
+		}else {
+			sign = "0";
+
+		}
+		return sign + significative;
+	}
+	
+	
+	/**
+	 * Obtiene la parte entera de un decimal, ej(3.1416 => 1416);
+	 * @param number numero a obtener la parte decimal entera.
+	 * @return parte entera del decimal.
+	 */
+	private int getParIntDecimalDouble(double number) {
+		String str = String.valueOf(number);
+		int decNumberInt = Integer.parseInt(str.substring(str.indexOf('.') + 1));
+		return decNumberInt;
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

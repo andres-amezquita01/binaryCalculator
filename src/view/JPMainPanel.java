@@ -66,7 +66,12 @@ public class JPMainPanel extends JPanel{
 	public void setValueText(String text) {
 		jPcontainerHeader.setValueText(text);
 	}
-
+	public void setValueTextComplementToOne(String text) {
+		jPcontainerHeader.setValueTextComplementToOne(text);
+	}
+	public void setValueTextMagnitudeSign(String text) {
+		jPcontainerHeader.setValueTextMagnitudeSign(text);
+	}
 	public  String getValueUser() {
 		return jPcontainerHeader.getValueUser();
 	}
