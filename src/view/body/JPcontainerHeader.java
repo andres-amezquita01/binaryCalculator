@@ -3,6 +3,8 @@ package view.body;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -16,6 +18,7 @@ import javax.swing.JToolTip;
 import com.placeholder.PlaceHolder;
 
 import control.Commands;
+import exceptions.OnlyNumbersException;
 import view.ConstantsUI;
 import views.items.MyComboBox;
 import views.items.RoundedJButton;
@@ -124,8 +127,8 @@ public class JPcontainerHeader extends JPanel{
 			return mcbReportSelect.getSelectedItem().toString();
 		}
 		public void setValueText(String text) {
-			textFieldTwo.setText("");
-			textFieldTwo.setText(text);
+				textFieldTwo.setText("");
+				textFieldTwo.setText(text);
 		}
 		public void setValueTextComplementToOne(String text) {
 			textFieldComplement1.setText("");
@@ -136,7 +139,33 @@ public class JPcontainerHeader extends JPanel{
 			textFieldmagnitudesign.setText("");
 			textFieldmagnitudesign.setText(text);
 		}
-		public String getValueUser() {
+		public String getValueUser() throws OnlyNumbersException {
+			try {
+				validateNumberCode(textField.getText());
+				return textField.getText();
+			} catch (OnlyNumbersException e) {
+				throw new OnlyNumbersException();
+			}
+		}
+		public String getValueCharUser() {
 			return textField.getText();
+		}
+		
+		/**
+		 * Valida que el numero que ingreso el usuario sea correcto.
+		 * @param code
+		 * @return
+		 * @throws OnlyNumbersException
+		 */
+		public static boolean validateNumberCode(String code) throws OnlyNumbersException{
+			boolean validate = false;
+			Pattern pat = Pattern.compile("^-?[0-9]\\d*(.\\d+)?$");
+		    Matcher mat = pat.matcher(code);                                                                           
+		     if (mat.matches() == true) {
+		         validate = true;
+		         return validate;
+		     } else {
+		        throw new OnlyNumbersException();                                                                             
+		     }
 		}
 }	

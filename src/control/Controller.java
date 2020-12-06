@@ -3,7 +3,11 @@ package control;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JOptionPane;
+
+import exceptions.OnlyNumbersException;
 import model.ManagerConfiguration;
+import view.ConstantsUI;
 import view.JFMainWindow;
 /**
  * Controlador que administra la interaccion con el usuario y envia datos al modelo.
@@ -19,6 +23,9 @@ public class Controller implements ActionListener{
 		window = new JFMainWindow(this);
 		window.setVisible(true);
 	}
+	/**
+	 * Gestiona los eventos que realiza el usuario.
+	 */
 	public void actionPerformed(ActionEvent event) {
 		switch (Commands.valueOf(event.getActionCommand())) {
 		
@@ -37,10 +44,16 @@ public class Controller implements ActionListener{
 		case C_PANEL_TO_BINARY_WHIT_FORMAT:
 			window.showPanelToBinaryWithFormat();
 			break;
+		case C_SEND_TO_NUMBER:
+			this.chooseTypeDataToNumber();
+			break;
 		default:
 			break;
 		}
 	}
+	/**
+	 * Escoge el tipo de dato del cual el usuario quiere saber su representacion con formatio IEEE754.
+	 */
 	private void chooseTypeDataWithFormat() {
 		String typeData = null;
 		 typeData = getCBValueWhitFormat();
@@ -56,56 +69,154 @@ public class Controller implements ActionListener{
 			break;
 		}
 	}
+	/**
+	 * Escoge el tipo de dato del cual el usuario quiere saber su representacion en binario.
+	 */
 	private void chooseTypeData() {
 		String typeData = null;
 		 typeData = getCBValue();
 		switch (typeData) {
 		case "Char":
-			window.setValueText(managerConfiguration.fromChar((window.getValueUser()).charAt(0)));
+			if (window.getValueCharUser().length() > 1 || window.getValueCharUser().length() == 0) {
+				JOptionPane.showMessageDialog(null, ConstantsUI.MESSAGE_ERROR_CHAR);
+			}else {
+				window.setValueText("Valor ASCII: "+ managerConfiguration.fromChar( (window.getValueCharUser()).charAt(0)) + " Valor en bits: " + managerConfiguration.fromStringToBinary(Character.toString(window.getValueCharUser().charAt(0))));
+			}
 			break;
 		case "Byte":
-			window.setValueText(managerConfiguration.fromByte(Byte.parseByte(window.getValueUser())));
-			window.setValueTextComplementToOne(managerConfiguration.fromByteComplementOne(Byte.parseByte(window.getValueUser()) ));
-			window.setValueTextMagnitudeSign(managerConfiguration.fromByteMagnitudeSign(Byte.parseByte(window.getValueUser()) ));
+			try {
+				window.setValueText(managerConfiguration.fromByte(Byte.parseByte(window.getValueUser())));
+				window.setValueTextComplementToOne(managerConfiguration.fromByteComplementOne(Byte.parseByte(window.getValueUser()) ));
+				window.setValueTextMagnitudeSign(managerConfiguration.fromByteMagnitudeSign(Byte.parseByte(window.getValueUser()) ));
+			} catch (NumberFormatException e) {
+				JOptionPane.showMessageDialog(null, ConstantsUI.MESSAGE_ERROR_NUMBER);
+			} catch (OnlyNumbersException e) {
+				JOptionPane.showMessageDialog(null, ConstantsUI.MESSAGE_ERROR_FORMAT_NUMBER);
+			}
 			break;
 		case "Short":
-			window.setValueText(managerConfiguration.fromShort(Short.parseShort(window.getValueUser())));
-			window.setValueTextComplementToOne(managerConfiguration.fromShortComplementOne(Short.parseShort(window.getValueUser()) ));
-			window.setValueTextMagnitudeSign(managerConfiguration.fromShortMagnitudeSign(Short.parseShort(window.getValueUser()) ));
+			try {
+				window.setValueText(managerConfiguration.fromShort(Short.parseShort(window.getValueUser())));
+				window.setValueTextComplementToOne(managerConfiguration.fromShortComplementOne(Short.parseShort(window.getValueUser()) ));
+				window.setValueTextMagnitudeSign(managerConfiguration.fromShortMagnitudeSign(Short.parseShort(window.getValueUser()) ));
+			} catch (NumberFormatException e) {
+				JOptionPane.showMessageDialog(null, ConstantsUI.MESSAGE_ERROR_NUMBER);
+			} catch (OnlyNumbersException e) {
+				JOptionPane.showMessageDialog(null, ConstantsUI.MESSAGE_ERROR_FORMAT_NUMBER);
+			}
+			
 			break;
 		case "Int":
-			window.setValueText(managerConfiguration.fromInt(Integer.parseInt(window.getValueUser())));
-			window.setValueTextComplementToOne(managerConfiguration.fromIntComplementOne(Integer.parseInt(window.getValueUser()) ));
-			window.setValueTextMagnitudeSign(managerConfiguration.fromIntMagnitudeSign(Integer.parseInt(window.getValueUser()) ));
+			
+			
+			try {
+				window.setValueText(managerConfiguration.fromInt(Integer.parseInt(window.getValueUser())));
+				window.setValueTextComplementToOne(managerConfiguration.fromIntComplementOne(Integer.parseInt(window.getValueUser()) ));
+				window.setValueTextMagnitudeSign(managerConfiguration.fromIntMagnitudeSign(Integer.parseInt(window.getValueUser()) ));
+			} catch (NumberFormatException e) {
+				JOptionPane.showMessageDialog(null, ConstantsUI.MESSAGE_ERROR_NUMBER);
+			} catch (OnlyNumbersException e) {
+				JOptionPane.showMessageDialog(null, ConstantsUI.MESSAGE_ERROR_FORMAT_NUMBER);
+			}
 			break;
 		case "Long":
-			window.setValueText(managerConfiguration.fromLong(Long.parseLong(window.getValueUser())));
-			window.setValueTextComplementToOne(managerConfiguration.fromLongComplementOne(Long.parseLong(window.getValueUser()) ));
-			window.setValueTextMagnitudeSign(managerConfiguration.fromLongMagnitudeSign(Long.parseLong(window.getValueUser()) ));
+			
+			try {
+				window.setValueText(managerConfiguration.fromLong(Long.parseLong(window.getValueUser())));
+				window.setValueTextComplementToOne(managerConfiguration.fromLongComplementOne(Long.parseLong(window.getValueUser()) ));
+				window.setValueTextMagnitudeSign(managerConfiguration.fromLongMagnitudeSign(Long.parseLong(window.getValueUser()) ));
+			} catch (NumberFormatException e) {
+				JOptionPane.showMessageDialog(null, ConstantsUI.MESSAGE_ERROR_NUMBER);
+			} catch (OnlyNumbersException e) {
+				JOptionPane.showMessageDialog(null, ConstantsUI.MESSAGE_ERROR_FORMAT_NUMBER);
+			}
 			break;
 		case "Float":
-			window.setValueText(managerConfiguration.fromFloat(Float.parseFloat(window.getValueUser())));
-			window.setValueTextComplementToOne(managerConfiguration.fromFloatComplementOne(Float.parseFloat(window.getValueUser()) ));
-			window.setValueTextMagnitudeSign(managerConfiguration.fromFloatMagnitudeSign(Float.parseFloat(window.getValueUser()) ));
+			
+			try {
+				window.setValueText(managerConfiguration.fromFloat(Float.parseFloat(window.getValueUser())));
+				window.setValueTextComplementToOne(managerConfiguration.fromFloatComplementOne(Float.parseFloat(window.getValueUser()) ));
+				window.setValueTextMagnitudeSign(managerConfiguration.fromFloatMagnitudeSign(Float.parseFloat(window.getValueUser()) ));
+			} catch (NumberFormatException e) {
+				JOptionPane.showMessageDialog(null, ConstantsUI.MESSAGE_ERROR_NUMBER);
+			} catch (OnlyNumbersException e) {
+				JOptionPane.showMessageDialog(null, ConstantsUI.MESSAGE_ERROR_FORMAT_NUMBER);
+			}
 			break;
 		case "Double":
-			window.setValueText(managerConfiguration.fromDouble(Double.parseDouble(window.getValueUser())));
-			window.setValueTextComplementToOne(managerConfiguration.fromDoubleComplementOne(Double.parseDouble(window.getValueUser()) ));
-			window.setValueTextMagnitudeSign(managerConfiguration.fromDoubleMagnitudeSign(Double.parseDouble(window.getValueUser()) ));
+			
+			try {
+				window.setValueText(managerConfiguration.fromDouble(Double.parseDouble(window.getValueUser())));
+				window.setValueTextComplementToOne(managerConfiguration.fromDoubleComplementOne(Double.parseDouble(window.getValueUser()) ));
+				window.setValueTextMagnitudeSign(managerConfiguration.fromDoubleMagnitudeSign(Double.parseDouble(window.getValueUser()) ));
+			} catch (NumberFormatException e) {
+				JOptionPane.showMessageDialog(null, ConstantsUI.MESSAGE_ERROR_NUMBER);
+			} catch (OnlyNumbersException e) {
+				JOptionPane.showMessageDialog(null, ConstantsUI.MESSAGE_ERROR_FORMAT_NUMBER);
+			}
 			break;
 		case "String":
-			window.setValueText(""+managerConfiguration.fromStringToBinary(window.getValueUser()));
+			
+			try {
+				window.setValueText(""+managerConfiguration.fromStringToBinary(window.getValueUser()));
+
+			} catch (NumberFormatException e) {
+				JOptionPane.showMessageDialog(null, ConstantsUI.MESSAGE_ERROR_NUMBER);
+			} catch (OnlyNumbersException e) {
+				JOptionPane.showMessageDialog(null, ConstantsUI.MESSAGE_ERROR_FORMAT_NUMBER);
+			}
 			break;
 		default:
 			break;
 		}
 	}
+	
+	/**
+	 * Escoge el tipo de dato del cual viene la cadena de bits para convertirla a numero.
+	 */
+	private void chooseTypeDataToNumber() {
+		String typeData = null;
+		 typeData = getCBValueToNumber();
+		switch (typeData) {
+			case "Integer":
+				try {
+					window.setValueTextToNumber(managerConfiguration.fromBinaryToNumberInt(window.getValueUserToNumber()));
+				} catch (NumberFormatException e) {
+					JOptionPane.showMessageDialog(null, ConstantsUI.MESSAGE_ERROR_NUMBER);
+				} catch (OnlyNumbersException e) {
+					JOptionPane.showMessageDialog(null, ConstantsUI.MESSAGE_ERROR_FORMAT_NUMBER);
+				}
+				break;
+			case "Double":
+				try {
+					window.setValueTextToNumber(managerConfiguration.fromBinaryToNumberDouble((window.getValueUserToNumber())));
+				} catch (NumberFormatException e) {
+					JOptionPane.showMessageDialog(null, ConstantsUI.MESSAGE_ERROR_NUMBER);
+				} catch (OnlyNumbersException e) {
+					JOptionPane.showMessageDialog(null, ConstantsUI.MESSAGE_ERROR_FORMAT_NUMBER);
+				}
+				break;
+			
+			default:
+				break;
+		}
+	}
+	
+	
+	
 	/**
 	 * Obtiene el valor seleccionado en el JcomboBox
 	 * @return Valor seleccionado en el jComboBox.
 	 */
 	public String getCBValue() {
 		return window.getIndexToComboBox();
+	}
+	/**
+	 * Obtiene el valor seleccionado en el JcomboBox del panel ToNumber
+	 * @return Valor seleccionado en el jComboBox.
+	 */
+	public String getCBValueToNumber() {
+		return window.getIndexToComboBoxToNumber();
 	}
 	
 	/**

@@ -12,6 +12,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import exceptions.OnlyNumbersException;
+
 /**
  * Ventana principal
  * @author Andres Felipe Amezquita Gordillo
@@ -20,7 +22,7 @@ import javax.swing.JPanel;
 public class JFMainWindow extends JFrame{
 	
 	private static final long serialVersionUID = 1L;
-	private JPMainPanel pMainPanel;
+	private JPMainPanel jpMainPanel;
 	
 	public JFMainWindow(ActionListener controllerApp) {
 		initComponents(controllerApp);
@@ -31,52 +33,78 @@ public class JFMainWindow extends JFrame{
 	 * @param controllerApp
 	 */
 	public void initComponents(ActionListener controllerApp) {
-		pMainPanel = new JPMainPanel(controllerApp);
+		jpMainPanel = new JPMainPanel(controllerApp);
 		this.setTitle(ConstantsUI.T_MAIN_WINDOW);
 		this.setDefaultCloseOperation( EXIT_ON_CLOSE );
 		this.setLayout( new BorderLayout() );
 		this.setBackground(Color.white);
 		this.setIconImage(new ImageIcon(getClass().getResource(ConstantsUI.PATH_ICON_APP)).getImage());
 		getRootPane().setBorder(BorderFactory.createMatteBorder(20, 30, 4, 30, Color.white));
-		this.setSize(1000,500);
+//		this.setSize(1000,500);
 		this.setPreferredSize(new Dimension(1000,500));
-		add(pMainPanel);
+		this.setExtendedState( MAXIMIZED_BOTH );
+		add(jpMainPanel);
 	}
 	
 	public String getIndexToComboBox() {
-		return pMainPanel.getIndexToComboBox();
+		return jpMainPanel.getIndexToComboBox();
 	}
 	public void setValueText(String text) {
-		pMainPanel.setValueText(text);
+		jpMainPanel.setValueText(text);
 	}
 	public void setValueTextComplementToOne(String text) {
-		pMainPanel.setValueTextComplementToOne(text);
+		jpMainPanel.setValueTextComplementToOne(text);
 	}
 	public void setValueTextMagnitudeSign(String text) {
-		pMainPanel.setValueTextMagnitudeSign(text);
+		jpMainPanel.setValueTextMagnitudeSign(text);
 	}
-	public String getValueUser() {
-		return pMainPanel.getValueUser();
+	public String getValueUser() throws OnlyNumbersException {
+		return jpMainPanel.getValueUser();
 	}
+	
+	
+	
+	public String getValueCharUser() {
+		return jpMainPanel.getValueCharUser();
+	}
+	
+	
+	
+	
 	public String getIndexToComboBoxFormat() {
-		return pMainPanel.getIndexToComboBoxFormat();
+		return jpMainPanel.getIndexToComboBoxFormat();
 	}
 	public void setValueTextFormat(String text) {
-		pMainPanel.setValueTextFormat(text);
+		jpMainPanel.setValueTextFormat(text);
 	}
 	public String getValueUserFormat() {
-		return pMainPanel.getValueUserFormat();
+		return jpMainPanel.getValueUserFormat();
 	}
 
+	
+	public String getIndexToComboBoxToNumber() {
+		return jpMainPanel.getIndexToComboBoxToNumber();
+	}
+	
+	public  String getValueUserToNumber() throws OnlyNumbersException {
+		return jpMainPanel.getValueUserToNumber();
+	}
+	
+	public void setValueTextToNumber(String text) {
+		jpMainPanel.setValueTextToNumber(text);
+	}
+	
+	
+	
 	public void showPanelToBinary() {
-		pMainPanel.showPanelToBinary();
+		jpMainPanel.showPanelToBinary();
 	}
 	public void showPanelToNumber() {
-		pMainPanel.showPanelToNumber();
+		jpMainPanel.showPanelToNumber();
 	}
 
 	public void showPanelToBinaryWithFormat() {
-		pMainPanel.showPanelToBinaryWithFormat();		
+		jpMainPanel.showPanelToBinaryWithFormat();		
 	}
 
 }

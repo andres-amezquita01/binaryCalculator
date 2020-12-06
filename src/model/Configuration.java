@@ -32,7 +32,7 @@ public class Configuration {
 	        }
 	        binary.append(' ');
 	     }
-	     System.out.println("'" + text + "' to binary: " + binary);
+//	     System.out.println("'" + text + "' to binary: " + binary);
 	     return binary;
 	}
 	
@@ -654,7 +654,7 @@ public class Configuration {
 	 * @param number numero a obtener la parte decimal entera.
 	 * @return parte entera del decimal.
 	 */
-	private int getParIntDecimalDouble(double number) {
+	public  int getParIntDecimalDouble(double number) {
 		String str = String.valueOf(number);
 		int decNumberInt = Integer.parseInt(str.substring(str.indexOf('.') + 1));
 		return decNumberInt;

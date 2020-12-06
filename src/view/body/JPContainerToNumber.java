@@ -3,6 +3,8 @@ package view.body;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
@@ -12,6 +14,7 @@ import javax.swing.JToolTip;
 import com.placeholder.PlaceHolder;
 
 import control.Commands;
+import exceptions.OnlyNumbersException;
 import view.ConstantsUI;
 import views.items.MyComboBox;
 import views.items.RoundedJButton;
@@ -47,20 +50,20 @@ public class JPContainerToNumber extends JPanel {
 		
 		textField = new JTextField();
 		textField.setSize(100, 20);
-		textField.setToolTipText(ConstantsUI.T_TEXT_DATA);
-		textField.setBorder(BorderFactory.createTitledBorder(ConstantsUI.T_TEXT_DATA));
+		textField.setToolTipText(ConstantsUI.T_TEXT_BITS_CONFIGURATION);
+		textField.setBorder(BorderFactory.createTitledBorder(ConstantsUI.T_TEXT_BITS_CONFIGURATION));
 		PlaceHolder placeHolder = new PlaceHolder(textField, ConstantsUI.T_TEXT_PLACE_HOLDER);
-		placeHolder.setColorHolder(Color.lightGray);
+		placeHolder.setColorHolder(Color.lightGray);	
 		textField.setBackground(Color.white);
 		
 		textFieldTwo = new JTextField();
 		textFieldTwo.setSize(100, 20); 
-		textFieldTwo.setToolTipText(ConstantsUI.T_TEXT_CONFIGURATION_BITS);
-		textFieldTwo.setBorder(BorderFactory.createTitledBorder(ConstantsUI.T_TEXT_CONFIGURATION_BITS));
+		textFieldTwo.setToolTipText(ConstantsUI.T_TEXT_NUMBER_REPRESENTING_THE_CONFIGURATION);
+		textFieldTwo.setBorder(BorderFactory.createTitledBorder(ConstantsUI.T_TEXT_NUMBER_REPRESENTING_THE_CONFIGURATION));
 		textFieldTwo.setEditable(false);
 		
 		jbutton = new RoundedJButton(15, 15, ConstantsUI.T_BUTTON_SEND, ConstantsUI.COLOR_DARCK_BLUE,
-			    Color.WHITE,ConstantsUI.FONT_MAIN_WINDOW_LABELS, Commands.C_SEND_TO_BINARY.toString(), actionListener ){
+			    Color.WHITE,ConstantsUI.FONT_MAIN_WINDOW_LABELS, Commands.C_SEND_TO_NUMBER.toString(), actionListener ){
 		            private static final long serialVersionUID = 1L;
 		            @Override
 		            public JToolTip createToolTip() {
@@ -71,32 +74,47 @@ public class JPContainerToNumber extends JPanel {
 		                return toolTip;
 		            }
 		        };
-		
-		add(textFieldTwo);
 		add(mcbReportSelect);
     	add(textField);
+		add(textFieldTwo);
 		add(jbutton);
 	}
 	private void addItemsToComboBox() {
-		mcbReportSelect.addItem("Char");
-		mcbReportSelect.addItem("Byte");
-		mcbReportSelect.addItem("Short");
-		mcbReportSelect.addItem("Int");
-		mcbReportSelect.addItem("Long");
-		mcbReportSelect.addItem("Float");
+		mcbReportSelect.addItem("Integer");
 		mcbReportSelect.addItem("Double");
-		mcbReportSelect.addItem("String");
-
 	}
-	public String getIndexToComboBox() {
+	public String getIndexToComboBoxToNumber() {
 		return mcbReportSelect.getSelectedItem().toString();
 	}
-	public void setValueText(String text) {
+	public void setValueTextToNumber(String text) {
 		textFieldTwo.setText("");
 		textFieldTwo.setText(text);
 	}
 
-	public String getValueUser() {
-		return textField.getText();
+	public String getValueUserToNumber() throws OnlyNumbersException {
+		try {
+			validateNumberCode(textField.getText());
+			return textField.getText();
+		} catch (OnlyNumbersException e) {
+			throw new OnlyNumbersException();
+		}
+	}
+	
+	/**
+	 * Valida que el numero que ingreso el usuario sea correcto.
+	 * @param code
+	 * @return
+	 * @throws OnlyNumbersException
+	 */
+	public static boolean validateNumberCode(String code) throws OnlyNumbersException{
+		boolean validate = false;
+		Pattern pat = Pattern.compile("^-?[0-9]\\d*(.\\d+)?$");
+	    Matcher mat = pat.matcher(code);                                                                           
+	     if (mat.matches() == true) {
+	         validate = true;
+	         return validate;
+	     } else {
+	        throw new OnlyNumbersException();                                                                             
+	     }
 	}
 }

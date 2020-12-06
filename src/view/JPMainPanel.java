@@ -4,8 +4,11 @@ import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
+
+import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
+import exceptions.OnlyNumbersException;
 import view.body.JPContainerToNumber;
 import view.body.JPContainerWithFormat;
 import view.body.JPcontainerHeader;
@@ -27,6 +30,8 @@ public class JPMainPanel extends JPanel{
 	}
 	
 	public void initComponents(ActionListener actionListener) {
+		setBorder(BorderFactory.createTitledBorder(ConstantsUI.AUTOR_NAME));
+
 		jPcontainerHeader = new JPcontainerHeader(actionListener);
 		jPContainerToNumber = new JPContainerToNumber(actionListener);
 		jpContainerWithFormat =  new JPContainerWithFormat(actionListener);
@@ -50,6 +55,18 @@ public class JPMainPanel extends JPanel{
 		return jPcontainerHeader.getIndexToComboBox();
 	}
 	
+	public String getIndexToComboBoxToNumber() {
+		return jPContainerToNumber.getIndexToComboBoxToNumber();
+	}
+	
+	public  String getValueUserToNumber() throws OnlyNumbersException {
+		return jPContainerToNumber.getValueUserToNumber();
+	}
+	
+	public void setValueTextToNumber(String text) {
+		jPContainerToNumber.setValueTextToNumber(text);
+	}
+
 	public String getIndexToComboBoxFormat() {
 		return jpContainerWithFormat.getIndexToComboBox();
 	}
@@ -72,8 +89,11 @@ public class JPMainPanel extends JPanel{
 	public void setValueTextMagnitudeSign(String text) {
 		jPcontainerHeader.setValueTextMagnitudeSign(text);
 	}
-	public  String getValueUser() {
+	public  String getValueUser() throws OnlyNumbersException {
 		return jPcontainerHeader.getValueUser();
+	}
+	public String getValueCharUser() {
+		return jPcontainerHeader.getValueCharUser();
 	}
 	public void showPanelToBinary() {
 		CardLayout cl = (CardLayout)(jpContainerBody.getLayout());

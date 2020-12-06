@@ -3,9 +3,10 @@ package model;
 public class ManagerConfiguration {
 	
 	private Configuration configuration;
-	
+	private ConfigurationToNumber configurationFromBitsToNumber;
 	public ManagerConfiguration() {
 		configuration = new Configuration();
+		configurationFromBitsToNumber = new ConfigurationToNumber();
 	}
 	
 	/**
@@ -14,7 +15,7 @@ public class ManagerConfiguration {
 	 * @return StringBuilder con la representacion en bits de text.
 	 */
 	public StringBuilder fromStringToBinary(String text) {
-		return configuration.fromStringToBinary(text);
+		return  configuration.fromStringToBinary(text);
 	}
 	
 	/**
@@ -101,5 +102,13 @@ public class ManagerConfiguration {
 	}
 	public String fromDoubleWithFormat(double number) {
 		return configuration.fromDoubletWithFormatIEEE754(number);
+	}
+	
+	
+	public String fromBinaryToNumberInt(String number) {
+		return Long.toString(configurationFromBitsToNumber.fromBitToNumber(number));
+	}
+	public String fromBinaryToNumberDouble(String number) {
+		return configurationFromBitsToNumber.fromDoubleBitToNumber(number);
 	}
 }
