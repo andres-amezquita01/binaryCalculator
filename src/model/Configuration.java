@@ -612,7 +612,21 @@ public class Configuration {
 		}
 		return rel;
 	}
-	
+	/**
+	 * Transforma un numbero grande a su representacion en binario.
+	 * @param number
+	 * @return
+	 */
+	public String bigNumberToBinary(Long number) {
+
+		String rel = "";
+		while(number > 0) {
+			Long numberOne =  (number % 2);
+			rel = numberOne + rel;
+			number /= 2;
+		}
+		return rel;
+	}
 	/**
 	 * convierte un binario a su representacion en signo magnitud.
 	 * @param mantise

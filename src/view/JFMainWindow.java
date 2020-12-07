@@ -40,8 +40,7 @@ public class JFMainWindow extends JFrame{
 		this.setBackground(Color.white);
 		this.setIconImage(new ImageIcon(getClass().getResource(ConstantsUI.PATH_ICON_APP)).getImage());
 		getRootPane().setBorder(BorderFactory.createMatteBorder(20, 30, 4, 30, Color.white));
-//		this.setSize(1000,500);
-		this.setPreferredSize(new Dimension(1000,500));
+		this.setSize(1000,500);
 		this.setExtendedState( MAXIMIZED_BOTH );
 		add(jpMainPanel);
 	}
@@ -49,6 +48,8 @@ public class JFMainWindow extends JFrame{
 	public String getIndexToComboBox() {
 		return jpMainPanel.getIndexToComboBox();
 	}
+	
+	
 	public void setValueText(String text) {
 		jpMainPanel.setValueText(text);
 	}
@@ -58,12 +59,14 @@ public class JFMainWindow extends JFrame{
 	public void setValueTextMagnitudeSign(String text) {
 		jpMainPanel.setValueTextMagnitudeSign(text);
 	}
-	public String getValueUser() throws OnlyNumbersException {
-		return jpMainPanel.getValueUser();
+	public void setValueTextExccess2n(String text) {
+		jpMainPanel.setValueTextExccess2n(text);
 	}
 	
 	
-	
+	public String getValueUser() throws OnlyNumbersException {
+		return jpMainPanel.getValueUser();
+	}
 	public String getValueCharUser() {
 		return jpMainPanel.getValueCharUser();
 	}

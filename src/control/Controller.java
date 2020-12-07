@@ -80,7 +80,12 @@ public class Controller implements ActionListener{
 			if (window.getValueCharUser().length() > 1 || window.getValueCharUser().length() == 0) {
 				JOptionPane.showMessageDialog(null, ConstantsUI.MESSAGE_ERROR_CHAR);
 			}else {
-				window.setValueText("Valor ASCII: "+ managerConfiguration.fromChar( (window.getValueCharUser()).charAt(0)) + " Valor en bits: " + managerConfiguration.fromStringToBinary(Character.toString(window.getValueCharUser().charAt(0))));
+				window.setValueText(ConstantsUI.VALUE_BITS + managerConfiguration.fromStringToBinary(Character.toString(window.getValueCharUser().charAt(0))) +
+						ConstantsUI.ASCII+ managerConfiguration.fromChar( (window.getValueCharUser()).charAt(0)) +
+						ConstantsUI.UNICODE + Integer.toHexString(window.getValueCharUser().charAt(0)));
+				window.setValueTextComplementToOne(ConstantsUI.MESSAGE_UNAVAILABLE);
+				window.setValueTextMagnitudeSign(ConstantsUI.MESSAGE_UNAVAILABLE);
+				window.setValueTextExccess2n(ConstantsUI.MESSAGE_UNAVAILABLE);
 			}
 			break;
 		case "Byte":
@@ -88,6 +93,8 @@ public class Controller implements ActionListener{
 				window.setValueText(managerConfiguration.fromByte(Byte.parseByte(window.getValueUser())));
 				window.setValueTextComplementToOne(managerConfiguration.fromByteComplementOne(Byte.parseByte(window.getValueUser()) ));
 				window.setValueTextMagnitudeSign(managerConfiguration.fromByteMagnitudeSign(Byte.parseByte(window.getValueUser()) ));
+				window.setValueTextExccess2n(managerConfiguration.fromByteToExccess2n(Byte.parseByte(window.getValueUser()) ));
+
 			} catch (NumberFormatException e) {
 				JOptionPane.showMessageDialog(null, ConstantsUI.MESSAGE_ERROR_NUMBER);
 			} catch (OnlyNumbersException e) {
@@ -99,6 +106,8 @@ public class Controller implements ActionListener{
 				window.setValueText(managerConfiguration.fromShort(Short.parseShort(window.getValueUser())));
 				window.setValueTextComplementToOne(managerConfiguration.fromShortComplementOne(Short.parseShort(window.getValueUser()) ));
 				window.setValueTextMagnitudeSign(managerConfiguration.fromShortMagnitudeSign(Short.parseShort(window.getValueUser()) ));
+				window.setValueTextExccess2n(managerConfiguration.fromShortToExcces2n(Short.parseShort(window.getValueUser())));
+
 			} catch (NumberFormatException e) {
 				JOptionPane.showMessageDialog(null, ConstantsUI.MESSAGE_ERROR_NUMBER);
 			} catch (OnlyNumbersException e) {
@@ -107,12 +116,12 @@ public class Controller implements ActionListener{
 			
 			break;
 		case "Int":
-			
-			
 			try {
 				window.setValueText(managerConfiguration.fromInt(Integer.parseInt(window.getValueUser())));
 				window.setValueTextComplementToOne(managerConfiguration.fromIntComplementOne(Integer.parseInt(window.getValueUser()) ));
 				window.setValueTextMagnitudeSign(managerConfiguration.fromIntMagnitudeSign(Integer.parseInt(window.getValueUser()) ));
+				window.setValueTextExccess2n(managerConfiguration.fromIntToExccess2n(Integer.parseInt(window.getValueUser()) ));
+
 			} catch (NumberFormatException e) {
 				JOptionPane.showMessageDialog(null, ConstantsUI.MESSAGE_ERROR_NUMBER);
 			} catch (OnlyNumbersException e) {
@@ -125,6 +134,7 @@ public class Controller implements ActionListener{
 				window.setValueText(managerConfiguration.fromLong(Long.parseLong(window.getValueUser())));
 				window.setValueTextComplementToOne(managerConfiguration.fromLongComplementOne(Long.parseLong(window.getValueUser()) ));
 				window.setValueTextMagnitudeSign(managerConfiguration.fromLongMagnitudeSign(Long.parseLong(window.getValueUser()) ));
+				window.setValueTextExccess2n(managerConfiguration.fromLongToExccess2n(Long.parseLong(window.getValueUser()) ));
 			} catch (NumberFormatException e) {
 				JOptionPane.showMessageDialog(null, ConstantsUI.MESSAGE_ERROR_NUMBER);
 			} catch (OnlyNumbersException e) {
@@ -137,6 +147,7 @@ public class Controller implements ActionListener{
 				window.setValueText(managerConfiguration.fromFloat(Float.parseFloat(window.getValueUser())));
 				window.setValueTextComplementToOne(managerConfiguration.fromFloatComplementOne(Float.parseFloat(window.getValueUser()) ));
 				window.setValueTextMagnitudeSign(managerConfiguration.fromFloatMagnitudeSign(Float.parseFloat(window.getValueUser()) ));
+				window.setValueTextExccess2n(ConstantsUI.MESSAGE_UNAVAILABLE);
 			} catch (NumberFormatException e) {
 				JOptionPane.showMessageDialog(null, ConstantsUI.MESSAGE_ERROR_NUMBER);
 			} catch (OnlyNumbersException e) {
@@ -149,6 +160,7 @@ public class Controller implements ActionListener{
 				window.setValueText(managerConfiguration.fromDouble(Double.parseDouble(window.getValueUser())));
 				window.setValueTextComplementToOne(managerConfiguration.fromDoubleComplementOne(Double.parseDouble(window.getValueUser()) ));
 				window.setValueTextMagnitudeSign(managerConfiguration.fromDoubleMagnitudeSign(Double.parseDouble(window.getValueUser()) ));
+				window.setValueTextExccess2n(ConstantsUI.MESSAGE_UNAVAILABLE);
 			} catch (NumberFormatException e) {
 				JOptionPane.showMessageDialog(null, ConstantsUI.MESSAGE_ERROR_NUMBER);
 			} catch (OnlyNumbersException e) {

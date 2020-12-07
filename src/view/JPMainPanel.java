@@ -89,12 +89,19 @@ public class JPMainPanel extends JPanel{
 	public void setValueTextMagnitudeSign(String text) {
 		jPcontainerHeader.setValueTextMagnitudeSign(text);
 	}
+	public void setValueTextExccess2n(String text) {
+		jPcontainerHeader.setValueTextExccess2n(text);
+	}
+	
+	
 	public  String getValueUser() throws OnlyNumbersException {
 		return jPcontainerHeader.getValueUser();
 	}
 	public String getValueCharUser() {
 		return jPcontainerHeader.getValueCharUser();
 	}
+	
+	
 	public void showPanelToBinary() {
 		CardLayout cl = (CardLayout)(jpContainerBody.getLayout());
 	    cl.show(jpContainerBody, TO_BINARY);

@@ -8,6 +8,11 @@ public class ConstantsUI {
 	public  static  final String MENU_ITEM_SEND = "Enviar";
 	public  static  final String T_MAIN_WINDOW = "Tipos de datos";
 	public  static  final String T_TEXT_DATA = "Dato";
+	
+	public  static  final String ASCII = "   Valor ASCII:   ";
+	public  static  final String VALUE_BITS = "Valor en bits:   ";
+	public  static  final String UNICODE = "   Valor en UNICODE:   ";
+
 	public  static  final String T_TEXT_PLACE_HOLDER = "Por favor,Ingrese aqui el dato.";
 	public  static  final String T_TEXT_CONFIGURATION_BITS = "Configuracion en bits Complemento a 2";
 	public  static  final String T_TEXT_CONFIGURATION_BITS_COMPLEMENT_TO_ONE = "Configuracion en bits Complemento a 1";
@@ -27,6 +32,7 @@ public class ConstantsUI {
 	public  static  final String MESSAGE_ERROR_CHAR = "Por favor, dato tipo char unicamente puede contener 1 caracter.";
 	public  static  final String MESSAGE_ERROR_NUMBER = "El numero no corresponde con el tipo de dato ";
 	public  static  final String MESSAGE_ERROR_FORMAT_NUMBER = "Por favor, ingrese unicamente numeros, si es entero sin punto y si es doble con punto";
+	public  static  final String MESSAGE_UNAVAILABLE = "No disponible para este tipo de dato.";
 
 	public static final Color COLOR_DARCK_BLUE = new Color(60, 128, 215);
 	public static final Color COLOR_LIGTH_BLUE = new Color(101, 153, 255);

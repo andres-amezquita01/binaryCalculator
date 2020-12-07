@@ -4,9 +4,11 @@ public class ManagerConfiguration {
 	
 	private Configuration configuration;
 	private ConfigurationToNumber configurationFromBitsToNumber;
+	private ConfiguratioExcess2n configurationExccess2n;
 	public ManagerConfiguration() {
 		configuration = new Configuration();
 		configurationFromBitsToNumber = new ConfigurationToNumber();
+		configurationExccess2n = new ConfiguratioExcess2n();
 	}
 	
 	/**
@@ -40,6 +42,9 @@ public class ManagerConfiguration {
 	public String fromShortMagnitudeSign(short number) {
 		return configuration.fromShortToMagnitudeSign(number);
 	}
+	public String fromShortToExcces2n(short number) {
+		 return configurationExccess2n.fromShortToExccess2n(number);
+	}
 	
 	
 	public String fromInt(int number) {
@@ -50,6 +55,9 @@ public class ManagerConfiguration {
 	}
 	public String fromIntMagnitudeSign(int number) {
 		return configuration.fromIntToMagnitudeSign(number);
+	}
+	public String fromIntToExccess2n(int number) {
+		return configurationExccess2n.fromIntToExccess2n(number);
 	}
 	
 	
@@ -62,6 +70,9 @@ public class ManagerConfiguration {
 	public String fromByteMagnitudeSign(byte number) {
 		return configuration.fromByteToMagnitudeSign(number);
 	}
+	public String fromByteToExccess2n(byte number) {
+		return configurationExccess2n.fromByteToExccess2n(number);
+	}
 	
 	
 	public String fromLong(Long number) {
@@ -73,7 +84,9 @@ public class ManagerConfiguration {
 	public String fromLongMagnitudeSign(long number) {
 		return configuration.fromLongToMagnitudeSign(number);
 	}
-	
+	public String fromLongToExccess2n(Long number) {
+		return configurationExccess2n.fromLongToExccess2n(number);
+	}
 	
 	
 	public String fromFloat(float number) {

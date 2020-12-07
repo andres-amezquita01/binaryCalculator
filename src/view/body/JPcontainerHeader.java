@@ -120,7 +120,6 @@ public class JPcontainerHeader extends JPanel{
 			mcbReportSelect.addItem("Long");
 			mcbReportSelect.addItem("Float");
 			mcbReportSelect.addItem("Double");
-			mcbReportSelect.addItem("String");
 
 		}
 		public String getIndexToComboBox() {
@@ -138,6 +137,11 @@ public class JPcontainerHeader extends JPanel{
 		public void setValueTextMagnitudeSign(String text) {
 			textFieldmagnitudesign.setText("");
 			textFieldmagnitudesign.setText(text);
+		}
+		
+		public void setValueTextExccess2n(String text) {
+			textFieldExces.setText("");
+			textFieldExces.setText(text);
 		}
 		public String getValueUser() throws OnlyNumbersException {
 			try {
