@@ -42,7 +42,8 @@ public class JFMainWindow extends JFrame{
 		this.setDefaultCloseOperation( EXIT_ON_CLOSE );
 		this.setLayout( new BorderLayout() );
 		this.setBackground(Color.white);
-		this.setIconImage(new ImageIcon(getClass().getResource(ConstantsUI.PATH_ICON_APP)).getImage());
+//		this.setIconImage(new ImageIcon(getClass().getResource(ConstantsUI.PATH_ICON_APP)).getImage());
+//		this.setIconImage(new ImageIcon(getClass().getResource(ConstantsUI.PATH_ICON_APP).getPath()));
 		getRootPane().setBorder(BorderFactory.createMatteBorder(20, 30, 4, 30, Color.white));
 		this.setSize(1000,500);
 		this.setExtendedState( MAXIMIZED_BOTH );
