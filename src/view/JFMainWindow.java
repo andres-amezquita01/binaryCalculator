@@ -24,6 +24,10 @@ public class JFMainWindow extends JFrame{
 	private static final long serialVersionUID = 1L;
 	private JPMainPanel jpMainPanel;
 	
+	/**
+	 * Constructor que inicializa cada uno de los paneles que componen el JFMainWindow.
+	 * @param controllerApp
+	 */
 	public JFMainWindow(ActionListener controllerApp) {
 		initComponents(controllerApp);
 	}
@@ -62,6 +66,9 @@ public class JFMainWindow extends JFrame{
 	public void setValueTextExccess2n(String text) {
 		jpMainPanel.setValueTextExccess2n(text);
 	}
+	public void setValueTextFromCharacterToBits(String text) {
+		jpMainPanel.setValueTextFromCharacterToBits(text);
+	}
 	
 	
 	public String getValueUser() throws OnlyNumbersException {
@@ -70,17 +77,25 @@ public class JFMainWindow extends JFrame{
 	public String getValueCharUser() {
 		return jpMainPanel.getValueCharUser();
 	}
-	
+	public String getValueUserFromCharacterToBits() {
+		return jpMainPanel.getValueUserFromCharacterToBits();
+	}
 	
 	
 	
 	public String getIndexToComboBoxFormat() {
 		return jpMainPanel.getIndexToComboBoxFormat();
 	}
+	public String getIndexToComboBoxFromCharacterToBits() {
+		return jpMainPanel.getIndexToComboBoxFromCharacterToBits();
+	}
+	
+	
+	
 	public void setValueTextFormat(String text) {
 		jpMainPanel.setValueTextFormat(text);
 	}
-	public String getValueUserFormat() {
+	public String getValueUserFormat() throws OnlyNumbersException {
 		return jpMainPanel.getValueUserFormat();
 	}
 
@@ -105,9 +120,12 @@ public class JFMainWindow extends JFrame{
 	public void showPanelToNumber() {
 		jpMainPanel.showPanelToNumber();
 	}
-
 	public void showPanelToBinaryWithFormat() {
 		jpMainPanel.showPanelToBinaryWithFormat();		
 	}
+	public void showPanelFromCharacterToNumber() {
+		jpMainPanel.showPanelFromCharacterToNumber();
+	}
+
 
 }

@@ -25,17 +25,17 @@ import views.items.RoundedJButton;
 
 
 
-public class JPcontainerHeader extends JPanel{
+public class JPcontainerToBinary extends JPanel{
 	private static final long serialVersionUID = 1L;
-		private MyComboBox mcbReportSelect;
+		private MyComboBox mcbReportSelect; 
 		private JTextField textField; 
-		private JTextField textFieldTwo; 
-		private JTextField textFieldComplement1; 
-		private JTextField textFieldmagnitudesign; 
-		private JTextField textFieldExces; 
+		private JTextArea textFieldTwo; 
+		private JTextArea textFieldComplement1; 
+		private JTextArea textFieldmagnitudesign; 
+		private JTextArea textFieldExces; 
 
 		private RoundedJButton jbutton;
-		public JPcontainerHeader(ActionListener actionListener) {
+		public JPcontainerToBinary(ActionListener actionListener) {
 			setLayout(new GridLayout(7,1));
 			setBackground(Color.white);
 			initComponents(actionListener);
@@ -66,26 +66,26 @@ public class JPcontainerHeader extends JPanel{
 			placeHolder.setColorHolder(Color.lightGray);
 			textField.setBackground(Color.white);
 			
-			textFieldTwo = new JTextField();
+			textFieldTwo = new JTextArea();
 			textFieldTwo.setSize(100, 20); 
 			textFieldTwo.setToolTipText(ConstantsUI.T_TEXT_CONFIGURATION_BITS);
 			textFieldTwo.setBorder(BorderFactory.createTitledBorder(ConstantsUI.T_TEXT_CONFIGURATION_BITS));
 			textFieldTwo.setEditable(false);
 			
 			
-			textFieldComplement1 = new JTextField();
+			textFieldComplement1 = new JTextArea();
 			textFieldComplement1.setSize(100, 20); 
 			textFieldComplement1.setToolTipText(ConstantsUI.T_TEXT_CONFIGURATION_BITS_COMPLEMENT_TO_ONE);
 			textFieldComplement1.setBorder(BorderFactory.createTitledBorder(ConstantsUI.T_TEXT_CONFIGURATION_BITS_COMPLEMENT_TO_ONE));
 			textFieldComplement1.setEditable(false);
 			
-			textFieldmagnitudesign = new JTextField();
+			textFieldmagnitudesign = new JTextArea();
 			textFieldmagnitudesign.setSize(100, 20); 
 			textFieldmagnitudesign.setToolTipText(ConstantsUI.T_TEXT_CONFIGURATION_BITS_MAGNITUDE_SIGN);
 			textFieldmagnitudesign.setBorder(BorderFactory.createTitledBorder(ConstantsUI.T_TEXT_CONFIGURATION_BITS_MAGNITUDE_SIGN));
 			textFieldmagnitudesign.setEditable(false);
 			
-			textFieldExces = new JTextField();
+			textFieldExces = new JTextArea();
 			textFieldExces.setSize(100, 20); 
 			textFieldExces.setToolTipText(ConstantsUI.T_TEXT_CONFIGURATION_BITS_EXCESS);
 			textFieldExces.setBorder(BorderFactory.createTitledBorder(ConstantsUI.T_TEXT_CONFIGURATION_BITS_EXCESS));
@@ -113,7 +113,6 @@ public class JPcontainerHeader extends JPanel{
 			add(jbutton);
 		}
 		private void addItemsToComboBox() {
-			mcbReportSelect.addItem("Char");
 			mcbReportSelect.addItem("Byte");
 			mcbReportSelect.addItem("Short");
 			mcbReportSelect.addItem("Int");

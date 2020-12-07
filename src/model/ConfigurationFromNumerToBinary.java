@@ -6,11 +6,11 @@ import java.util.ArrayList;
  * Configura los bits para cada tipo de dato primitivo.
  * @author Andres Felipe Amezquita Gordillo
  */
-public class Configuration {
+public class ConfigurationFromNumerToBinary {
 	/**
 	 * constructor vacio para ser instanciado en el manager.
 	 */
-	public Configuration() {
+	public ConfigurationFromNumerToBinary() {
 		
 	}
 	
@@ -21,18 +21,20 @@ public class Configuration {
 	 */
 	public StringBuilder fromStringToBinary(String text) {
 	     byte[] bytes = text.getBytes();
+	     int countJumpLine = 70;
 	     StringBuilder binary = new StringBuilder();
-	     for (byte c : bytes)
-	     {
+	     for (byte c : bytes){
 	        int val = c;
-	        for (int count = 0; count < 8; count++)
-	        {
+	        for (int count = 0; count < 8; count++){
 	           binary.append((val & 128) == 0 ? 0 : 1);
 	           val <<= 1;
 	        }
 	        binary.append(' ');
+	        if (binary.length() > countJumpLine) {
+	        	binary.append("\n");
+	        	countJumpLine += 70;
+			}
 	     }
-//	     System.out.println("'" + text + "' to binary: " + binary);
 	     return binary;
 	}
 	

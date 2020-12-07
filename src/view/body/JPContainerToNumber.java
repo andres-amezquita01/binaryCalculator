@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JToolTip;
 
@@ -23,7 +24,7 @@ public class JPContainerToNumber extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private MyComboBox mcbReportSelect;
 	private JTextField textField; 
-	private JTextField textFieldTwo; 
+	private JTextArea textFieldTwo; 
 	private RoundedJButton jbutton;
 	public JPContainerToNumber(ActionListener actionListener) {
 		setLayout(new GridLayout(4,1));
@@ -56,7 +57,7 @@ public class JPContainerToNumber extends JPanel {
 		placeHolder.setColorHolder(Color.lightGray);	
 		textField.setBackground(Color.white);
 		
-		textFieldTwo = new JTextField();
+		textFieldTwo = new JTextArea();
 		textFieldTwo.setSize(100, 20); 
 		textFieldTwo.setToolTipText(ConstantsUI.T_TEXT_NUMBER_REPRESENTING_THE_CONFIGURATION);
 		textFieldTwo.setBorder(BorderFactory.createTitledBorder(ConstantsUI.T_TEXT_NUMBER_REPRESENTING_THE_CONFIGURATION));

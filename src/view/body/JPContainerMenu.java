@@ -15,14 +15,14 @@ import views.items.RoundedJButton;
 
 public class JPContainerMenu extends JPanel {
 	private static final long serialVersionUID = 1L;
-	private JButton buttonBinary, buttonNumber, buttonBinaryWithFormat;
+	private JButton buttonBinary, buttonNumber, buttonBinaryWithFormat, buttonFromCharacterToBinary;
 	
 	public  JPContainerMenu(ActionListener actionListener) {
 		initComponents(actionListener);
 	}
 	
 	public void initComponents(ActionListener actionListener) {
-		setLayout(new GridLayout(3,1,10,40));
+		setLayout(new GridLayout(4,1,10,40));
 		setBackground(Color.WHITE);
 		setBorder(BorderFactory.createMatteBorder(20, 30, 4, 30, Color.white));
 
@@ -64,10 +64,22 @@ public class JPContainerMenu extends JPanel {
 		                return toolTip;
 			            }
 		        };
-	
+       buttonFromCharacterToBinary = new RoundedJButton(15, 15, ConstantsUI.T_BUTTON_FROM_CHARACTER_TO_BINART, ConstantsUI.COLOR_DARCK_BLUE,
+			    Color.WHITE,ConstantsUI.FONT_MAIN_WINDOW_LABELS, Commands.C_PANEL_FROM_CHARACTER_TO_BINARY.toString(), actionListener ){
+		            private static final long serialVersionUID = 1L;
+		            @Override
+		            public JToolTip createToolTip() {
+		                JToolTip toolTip = super.createToolTip();
+		                toolTip.setBackground(ConstantsUI.COLOR_DARCK_BLUE);
+		                toolTip.setForeground(Color.WHITE);
+		                toolTip.setFont(ConstantsUI.RUBIK_BOLD_16);
+		                return toolTip;
+			            }
+		        };
 		add(buttonBinary);
 		add(buttonNumber);
 		add(buttonBinaryWithFormat);
+		add(buttonFromCharacterToBinary);
 
 	}
 	

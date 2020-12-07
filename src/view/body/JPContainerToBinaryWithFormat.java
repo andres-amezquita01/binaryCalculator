@@ -3,28 +3,32 @@ package view.body;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JToolTip;
 
 import com.placeholder.PlaceHolder;
 
 import control.Commands;
+import exceptions.OnlyNumbersException;
 import view.ConstantsUI;
 import views.items.MyComboBox;
 import views.items.RoundedJButton;
 
-public class JPContainerWithFormat extends JPanel{
+public class JPContainerToBinaryWithFormat extends JPanel{
 	private static final long serialVersionUID = 1L;
 
 	private MyComboBox mcbSelectFormat;
 	private JTextField textField; 
-	private JTextField textFieldTwo; 
+	private JTextArea textFieldTwo; 
 	private RoundedJButton jbutton;
 	
-	public JPContainerWithFormat(ActionListener actionListener) {
+	public JPContainerToBinaryWithFormat(ActionListener actionListener) {
 		initComponents( actionListener);
 	}
 	
@@ -52,7 +56,7 @@ public class JPContainerWithFormat extends JPanel{
 		placeHolder.setColorHolder(Color.lightGray);
 		textField.setBackground(Color.white);
 		
-		textFieldTwo = new JTextField();
+		textFieldTwo = new JTextArea();
 		textFieldTwo.setSize(100, 20); 
 		textFieldTwo.setToolTipText(ConstantsUI.T_TEXT_CONFIGURATION_BITS_WHIT_FORMAT);
 		textFieldTwo.setBorder(BorderFactory.createTitledBorder(ConstantsUI.T_TEXT_CONFIGURATION_BITS_WHIT_FORMAT));
@@ -91,7 +95,29 @@ public class JPContainerWithFormat extends JPanel{
 		textFieldTwo.setText(text);
 	}
 
-	public String getValueUser() {
-		return textField.getText();
+	public String getValueUser() throws OnlyNumbersException {
+		try {
+			validateNumberCode(textField.getText());
+			return textField.getText();
+		} catch (OnlyNumbersException e) {
+			throw new OnlyNumbersException();
+		}
+	}
+	/**
+	 * Valida que el numero que ingreso el usuario sea correcto.
+	 * @param code
+	 * @return
+	 * @throws OnlyNumbersException
+	 */
+	public static boolean validateNumberCode(String code) throws OnlyNumbersException{
+		boolean validate = false;
+		Pattern pat = Pattern.compile("^-?[0-9]\\d*(.\\d+)?$");
+	    Matcher mat = pat.matcher(code);                                                                           
+	     if (mat.matches() == true) {
+	         validate = true;
+	         return validate;
+	     } else {
+	        throw new OnlyNumbersException();                                                                             
+	     }
 	}
 }

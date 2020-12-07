@@ -10,20 +10,23 @@ import javax.swing.JPanel;
 
 import exceptions.OnlyNumbersException;
 import view.body.JPContainerToNumber;
-import view.body.JPContainerWithFormat;
-import view.body.JPcontainerHeader;
+import view.body.JPContainerToBinaryWithFormat;
+import view.body.JPcontainerToBinary;
+import view.body.JPContainerCharacterToBinary;
 import view.body.JPContainerMenu;
 
 public class JPMainPanel extends JPanel{
 	private static final long serialVersionUID = 1L;
-	private JPcontainerHeader jPcontainerHeader;
+	private JPcontainerToBinary jPcontainerContainerToBinary;
 	private JPContainerToNumber jPContainerToNumber;
-	private JPContainerWithFormat jpContainerWithFormat;
+	private JPContainerToBinaryWithFormat jpContainerWithFormat;
+	private JPContainerCharacterToBinary jpContainerCharacterToBinary;
 	private JPanel jpContainerBody;
 	private JPContainerMenu jpContainerMenu;
 	private final static String TO_BINARY = "Binario";
 	private final static String TO_NUMBER = "Numero";
 	private final static String TO_BINARY_WITH_FORMAT_IEE754 = "Binario con formato";
+	private final static String FROM_CHARACTER_TO_BINARY = "De caracter a binario";
 
 	public JPMainPanel(ActionListener actionListener) {
 		initComponents(actionListener);
@@ -32,17 +35,20 @@ public class JPMainPanel extends JPanel{
 	public void initComponents(ActionListener actionListener) {
 		setBorder(BorderFactory.createTitledBorder(ConstantsUI.AUTOR_NAME));
 
-		jPcontainerHeader = new JPcontainerHeader(actionListener);
+		jPcontainerContainerToBinary = new JPcontainerToBinary(actionListener);
 		jPContainerToNumber = new JPContainerToNumber(actionListener);
-		jpContainerWithFormat =  new JPContainerWithFormat(actionListener);
+		jpContainerWithFormat =  new JPContainerToBinaryWithFormat(actionListener);
+		jpContainerCharacterToBinary =  new JPContainerCharacterToBinary(actionListener);
 		
 		jpContainerBody = new JPanel();
 		jpContainerBody.setBackground(Color.WHITE);
 		jpContainerBody.setLayout(new CardLayout(0, 0));
 		
-		jpContainerBody.add(jPcontainerHeader, TO_BINARY);
+		jpContainerBody.add(jPcontainerContainerToBinary, TO_BINARY);
 		jpContainerBody.add(jPContainerToNumber, TO_NUMBER);
 		jpContainerBody.add(jpContainerWithFormat, TO_BINARY_WITH_FORMAT_IEE754);
+		jpContainerBody.add(jpContainerCharacterToBinary,FROM_CHARACTER_TO_BINARY);
+		
 		jpContainerMenu = new JPContainerMenu(actionListener);
 		
 		setBackground(Color.white);
@@ -52,7 +58,7 @@ public class JPMainPanel extends JPanel{
 		showPanelToBinary();
 	}
 	public String getIndexToComboBox() {
-		return jPcontainerHeader.getIndexToComboBox();
+		return jPcontainerContainerToBinary.getIndexToComboBox();
 	}
 	
 	public String getIndexToComboBoxToNumber() {
@@ -62,44 +68,52 @@ public class JPMainPanel extends JPanel{
 	public  String getValueUserToNumber() throws OnlyNumbersException {
 		return jPContainerToNumber.getValueUserToNumber();
 	}
-	
-	public void setValueTextToNumber(String text) {
-		jPContainerToNumber.setValueTextToNumber(text);
+	public  String getValueUserFormat() throws OnlyNumbersException {
+		return jpContainerWithFormat.getValueUser();
 	}
+	public String getValueUserFromCharacterToBits() {
+		return jpContainerCharacterToBinary.getValueUserFromCharacterToBits();
+	}
+	public  String getValueUser() throws OnlyNumbersException {
+		return jPcontainerContainerToBinary.getValueUser();
+	}
+	public String getValueCharUser() {
+		return jPcontainerContainerToBinary.getValueCharUser();
+	}
+	
+	
 
 	public String getIndexToComboBoxFormat() {
 		return jpContainerWithFormat.getIndexToComboBox();
 	}
+	public String getIndexToComboBoxFromCharacterToBits() {
+		return jpContainerCharacterToBinary.getIndexToComboBoxFromCharacterToBits();
+	}
+	
+	
 	
 	public void setValueTextFormat(String text) {
 		jpContainerWithFormat.setValueText(text);
 	}
-
-	public  String getValueUserFormat() {
-		return jpContainerWithFormat.getValueUser();
-	}
-	
-	
 	public void setValueText(String text) {
-		jPcontainerHeader.setValueText(text);
+		jPcontainerContainerToBinary.setValueText(text);
 	}
 	public void setValueTextComplementToOne(String text) {
-		jPcontainerHeader.setValueTextComplementToOne(text);
+		jPcontainerContainerToBinary.setValueTextComplementToOne(text);
 	}
 	public void setValueTextMagnitudeSign(String text) {
-		jPcontainerHeader.setValueTextMagnitudeSign(text);
+		jPcontainerContainerToBinary.setValueTextMagnitudeSign(text);
 	}
 	public void setValueTextExccess2n(String text) {
-		jPcontainerHeader.setValueTextExccess2n(text);
+		jPcontainerContainerToBinary.setValueTextExccess2n(text);
+	}
+	public void setValueTextFromCharacterToBits(String text) {
+		 jpContainerCharacterToBinary.setValueTextFromCharacterToBits(text);
+	}
+	public void setValueTextToNumber(String text) {
+		jPContainerToNumber.setValueTextToNumber(text);
 	}
 	
-	
-	public  String getValueUser() throws OnlyNumbersException {
-		return jPcontainerHeader.getValueUser();
-	}
-	public String getValueCharUser() {
-		return jPcontainerHeader.getValueCharUser();
-	}
 	
 	
 	public void showPanelToBinary() {
@@ -116,4 +130,16 @@ public class JPMainPanel extends JPanel{
 		CardLayout cl = (CardLayout)(jpContainerBody.getLayout());
 	    cl.show(jpContainerBody, TO_BINARY_WITH_FORMAT_IEE754);
 	}
+	
+	public void showPanelFromCharacterToNumber() {
+		CardLayout cl = (CardLayout)(jpContainerBody.getLayout());
+	    cl.show(jpContainerBody, FROM_CHARACTER_TO_BINARY);
+	}
 }
+
+
+
+
+
+
+
