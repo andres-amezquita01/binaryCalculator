@@ -1,3 +1,4 @@
+![UI](https://user-images.githubusercontent.com/56136585/123429442-952faf00-d58c-11eb-8bc2-8d3422c37639.png)
 # binaryCalculator
 *****************Calculadora del sistema binario*************
 
