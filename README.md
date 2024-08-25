@@ -11,7 +11,6 @@ la calculadora permite:
 * convertir un caracter (char) o una cadena de caracteres (String) a su representacion en binario (ej: andres => 01100001 01101110 01100100 01110010 01100101 01110011)
 
 
-*Lic. unicamente educativo. 
-*Autor: Andres Felipe Amezquita Gordillo
+
 
 
